@@ -1,5 +1,4 @@
 name: CI Build
-
 on:
   push:
     branches:
@@ -11,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    container: python:3.9-slim
     services:
       postgres:
         image: postgres:alpine
@@ -43,4 +42,4 @@ jobs:
       - name: Run unit tests with nose
         run: nosetests
         env:
-          DATABASE_URI: "postgresql://postgres:pgs3cr3t@postgres:5432/testdb"
+           DATABASE_URI: "postgresql://postgres:{password}@{service}:{port}/{database}
